@@ -9,7 +9,7 @@
         </div>
         <div class="pageTitle">E-Presensi</div>
         <div class="right"></div>
-    </div>
+</div>
 <style>
     .webcam-capture,
     .webcam-capture video{
