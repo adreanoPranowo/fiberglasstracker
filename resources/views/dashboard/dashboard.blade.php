@@ -7,7 +7,7 @@
                     @php
                     $path = Storage::url('uploads/karyawan/'.Auth::guard('karyawan')->user()->foto);
                     @endphp
-                    <img src="{{ url($path) }}" alt="avatar" class="imaged w64" style="height : 64px">
+                    <img src="{{ url($path) }}" alt="avatar" class="imaged w64" style="height : 68px">
                     @else
                     <img src="assets/img/sample/avatar/avatar1.jpg" alt="avatar" class="imaged w64 rounded">
                     @endif
