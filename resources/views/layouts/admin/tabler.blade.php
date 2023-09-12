@@ -33,17 +33,15 @@
   <body >
     <script src="{{ asset('tabler/dist/js/demo-theme.min.js?1692870487') }}"></script>
     <div class="page">
-    <!-- sidebar -->
     @include('layouts.admin.sidebar')
-    <!-- Navbar -->
+   
     @include('layouts.admin.header')
-      <div class="page-wrapper">
-        <!-- Page header -->
-        <!-- Page body -->
+   
+   
+    <div class="page-wrapper">
     @yield('content')
-    <!-- footer -->
     @include('layouts.admin.footer')
-      </div>
+    </div>
     </div>
     <!-- Libs JS -->
     <script src="{{ asset('tabler/dist/libs/apexcharts/dist/apexcharts.min.js?1692870487') }}" defer></script>
