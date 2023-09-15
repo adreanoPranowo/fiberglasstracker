@@ -112,16 +112,16 @@ class PresensiController extends Controller
          return compact('meters');
      }
 
-     public function editprofile(){
+    public function editprofile(){
 
         //get data karyawan
         $nik = Auth::guard('karyawan')->user()->nik;
         $karyawan = DB::table('karyawan')->where('nik', $nik)->first();
         
         return view('presensi.editprofile', compact('karyawan'));
-     }
+    }
 
-     public function updateprofile(Request $request){
+    public function updateprofile(Request $request){
 
         $nik = Auth::guard('karyawan')->user()->nik;
         $nama_lengkap = $request->nama_lengkap;
@@ -161,16 +161,15 @@ class PresensiController extends Controller
         } else {
             return Redirect::back()->with(['error'=>'Gagal Update Data']);
         }
-     }
-     
-     public function histori(){
+    }
+    public function histori(){
 
         $namabulan = ["","Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
         
         return view('presensi.histori', compact('namabulan'));
-     }
+    }
 
-     public function gethistori(Request $request){
+    public function gethistori(Request $request){
         $bulan = $request->bulan;
         $tahun = $request->tahun;
         $nik = Auth::guard('karyawan')->user()->nik;
@@ -184,22 +183,22 @@ class PresensiController extends Controller
 
         return view('presensi.gethistori', compact('histori'));
         
-     }
+    }
 
-     public function izin (){
+    public function izin (){
         $nik = Auth::guard('karyawan')->user()->nik;
         $dataizin = DB::table('pengajuan_izin')->where('nik', $nik)->get();
         // dd($dataizin);
         return view('presensi.izin', compact('dataizin'));
-     }
+    }
 
-     public function buatizin(){
+    public function buatizin(){
 
         
         return view('presensi.buatizin');
-     }
+    }
 
-     public function storeizin(Request $request){
+    public function storeizin(Request $request){
 
         $nik = Auth::guard('karyawan')->user()->nik;
         $tgl_izin = $request->tgl_izin;
@@ -220,7 +219,21 @@ class PresensiController extends Controller
         } else {
             return redirect('/presensi/izin')->with(['error'=>'Data Gagal Disimpan']);
         }
+    }
 
+    public function monitoring(){
+        return view('presensi.monitoring');
+    }
 
-     }
+    public function getpresensi(Request $request){
+        $tanggal = $request->tanggal;
+        $presensi = DB::table('presensi')
+        ->select('presensi.*', 'nama_lengkap', 'nama_dpt')
+        ->join('karyawan','presensi.nik', '=','karyawan.nik')
+        ->join('departemen','karyawan.kode_dpt', '=','departemen.kode_dpt')
+        ->where('tgl_presensi', $tanggal)
+        ->get();
+
+        return view('presensi.getpresensi', compact('presensi'));
+    }
 }

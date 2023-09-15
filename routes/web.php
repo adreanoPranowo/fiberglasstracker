@@ -68,11 +68,15 @@ Route::middleware(['auth:user'])->group(function(){
     Route::post('/karyawan/{nik}/update', [KaryawanController::class, 'update']);
     Route::post('/karyawan/{nik}/delete', [KaryawanController::class, 'delete']);
 
-    //
+    //departemen
     Route::get('/departemen', [DepartemenController::class, 'index']);
     Route::post('/departemen/store', [DepartemenController::class, 'store']);
     Route::post('/departemen/edit', [DepartemenController::class, 'edit']);
     Route::post('/departemen/{kode_dpt}/update', [DepartemenController::class, 'update']);
     Route::post('/departemen/{kode_dpt}/delete', [DepartemenController::class, 'delete']);
+
+    //monitoring presensi
+    Route::get('/presensi/monitoring', [PresensiController::class, 'monitoring']);
+    Route::post('/getpresensi', [PresensiController::class, 'getpresensi']);
 });
 
