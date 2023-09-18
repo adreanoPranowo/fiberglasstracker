@@ -29,7 +29,7 @@
                                 <path d="M8 15h2v2h-2z"></path>
                                 </svg>
                                 </span>
-                                <input type="text"  id="tanggal"  name="tanggal"  value="" class="form-control" placeholder="Tanggal Presensi" autocomplete="off">
+                                <input type="text"  id="tanggal"  name="tanggal"  value="{{ date('Y-m-d') }}" class="form-control" placeholder="Tanggal Presensi" autocomplete="off">
                             </div>
                             </div>
                         </div>
@@ -47,6 +47,7 @@
                                             <th>JAM PULANG</th>
                                             <th>FOTO</th>
                                             <th>KETERANGAN</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody id="loadpresensi">
@@ -61,6 +62,19 @@
         </div>
     </div>
 </div>
+<div class="modal modal-blur fade" id="modal-tampilkanpeta" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Lokasi Presensi User</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="loadmap">
+            
+        </div>
+        </div>
+    </div>
+</div>
 @endsection
 @push('myscript')
 <script>
@@ -71,8 +85,8 @@
             format : 'yyyy-mm-dd'
         });
 
-        $("#tanggal").change(function(e){
-            var tanggal = $(this).val();
+        function loadpresensi(){
+            var tanggal = $("#tanggal").val();
             $.ajax({
                 type: 'POST',
                 url: '/getpresensi',
@@ -85,7 +99,11 @@
                     $("#loadpresensi").html(respond);
                 }
             });
+        }
+        $("#tanggal").change(function(e){
+            loadpresensi();
         });
+        loadpresensi();
     });
 </script>
 @endpush
