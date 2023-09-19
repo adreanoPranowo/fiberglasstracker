@@ -8,7 +8,7 @@
     var lok = lokasi.split(",");
     var latitude = lok[0];
     var longitude = lok[1];
-    var map = L.map('map').setView([latitude, longitude], 13);
+    var map = L.map('map').setView([latitude, longitude], 16);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
