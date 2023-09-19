@@ -145,24 +145,24 @@ function selisih($jam_masuk, $jam_keluar) {
         @endforeach
     </table>
     <table width="100%" style="margin-top: 50px;">
-      <tr>
+    <tr>
         <td></td>
         <td style="text-align: right;">
-          Banyuwangi, {{ date('d-m-Y') }}
+        Banyuwangi, {{ date('d-m-Y') }}
         </td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td style="text-align: Left; vertical-align:bottom" height="100px">
-          <u>Achmad Zuniar</u><br>
-          <b>HRD</b> 
+        <u>Achmad Zuniar</u><br>
+        <b>HRD</b> 
         </td>
         <td style="text-align: Right; vertical-align:bottom" height="100px">
-          <u>Firman Dewantara</u><br>
-          <b>CEO</b> 
+        <u>Firman Dewantara</u><br>
+        <b>CEO</b> 
         </td>
-      </tr>
+    </tr>
     </table>
-  </section>
+</section>
 
 </body>
 
