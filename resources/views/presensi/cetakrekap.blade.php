@@ -14,7 +14,7 @@
   <!-- Set page size here: A5, A4 or A3 -->
   <!-- Set also "landscape" if you need -->
   <style>@page 
-  { size: A4 }
+  { size: F4 }
 
   #judul{
     font-size: 18;
@@ -44,7 +44,7 @@
   .tabelpresensi td{
     border: 1px solid #000 ;
     padding: 5px;
-    font-size: 12px;
+    font-size: 10px;
   }
 
   .foto {
@@ -57,7 +57,7 @@
 <!-- Set "A5", "A4" or "A3" for class name -->
 <!-- Set also "landscape" if you need -->
 
-<body class="A4 landscape">
+<body class="F4 landscape">
 <?php
 function selisih($jam_masuk, $jam_keluar) {
     list($h, $m, $s) = explode(":", $jam_masuk);

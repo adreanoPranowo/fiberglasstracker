@@ -43,17 +43,17 @@ class PresensiController extends Controller
 
         $jarak = $this->distance($latitudkantor, $longitudkantor, $latitudeuser, $longitudeuser);
         $radius = round($jarak['meters']) ;
-       
+    
 
         
          //cek apakah sudah absen
-         $cek = DB::table('presensi')->where('tgl_presensi',$tgl_presensi)->where('nik',$nik)->count();
+        $cek = DB::table('presensi')->where('tgl_presensi',$tgl_presensi)->where('nik',$nik)->count();
 
-         if($cek > 0){
+        if($cek > 0){
             $ket = "out";
-         } else {
+        } else {
             $ket = "in";
-         }
+        }
          //menyimpan data image
         $folderPath = "public/uploads/absensi/";
         $formatName = $nik."-".$tgl_presensi."-".$ket;
@@ -63,7 +63,7 @@ class PresensiController extends Controller
         $fileName = $formatName.".png";
         $file = $folderPath.$fileName;
 
-       
+
         if($radius > $lok_kantor->radius){
             echo "error|Maaf anda berada diluar radius, Jarak anda ".$radius." meter dari Kantor |radius";
         }else {
@@ -100,18 +100,18 @@ class PresensiController extends Controller
     }
 
      //Menghitung Jarak
-     function distance($lat1, $lon1, $lat2, $lon2) {
-         $theta = $lon1 - $lon2;
-         $miles = (sin(deg2rad($lat1)) * sin(deg2rad($lat2))) + (cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta)));
-         $miles = acos($miles);
-         $miles = rad2deg($miles);
-         $miles = $miles * 60 * 1.1515;
-         $feet = $miles * 5280;
-         $yards = $feet / 3;
-         $kilometers = $miles * 1.609344;
-         $meters = $kilometers * 1000;
-         return compact('meters');
-     }
+    function distance($lat1, $lon1, $lat2, $lon2) {
+        $theta = $lon1 - $lon2;
+        $miles = (sin(deg2rad($lat1)) * sin(deg2rad($lat2))) + (cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta)));
+        $miles = acos($miles);
+        $miles = rad2deg($miles);
+        $miles = $miles * 60 * 1.1515;
+        $feet = $miles * 5280;
+        $yards = $feet / 3;
+        $kilometers = $miles * 1.609344;
+        $meters = $kilometers * 1000;
+        return compact('meters');
+    }
 
     public function editprofile(){
 
@@ -138,7 +138,7 @@ class PresensiController extends Controller
         }
 
         if(empty($request->password)){
-             $data = [
+            $data = [
             'nama_lengkap' => $nama_lengkap,
             'no_hp' => $no_hp,
             'foto' => $foto
@@ -328,4 +328,37 @@ class PresensiController extends Controller
         return view('presensi.cetakrekap', compact('bulan','tahun','rekap','namabulan'));
         
     }
+
+    public function izinsakit(){
+        $izinsakit = DB::table('pengajuan_izin')
+        ->join('karyawan','pengajuan_izin.nik','=','karyawan.nik')
+        ->orderBy('tgl_izin', 'desc')
+        ->get();
+        return view('presensi.izinsakit', compact('izinsakit'));
+    }
+
+    public function approveizinsakit(Request $request){
+        $status_approved = $request->status_approved;
+        $id_izinsakit_form = $request->id_izinsakit_form;
+        $update = DB::table('pengajuan_izin')->where('id', $id_izinsakit_form)->update([
+            'status_approved' => $status_approved
+        ]);
+        if($update){
+            return Redirect::back()->with(['success' => 'Data Berhasil di Update']);
+        } else {
+            return Redirect::back()->with(['warning' => 'Data Gagal di Update']);
+        }
+    }
+
+    public function batalkanizinsakit($id){
+        $update = DB::table('pengajuan_izin')->where('id', $id)->update([
+            'status_approved' => 0
+        ]);
+        if($update){
+            return Redirect::back()->with(['success' => 'Data Berhasil di Update']);
+        } else {
+            return Redirect::back()->with(['warning' => 'Data Gagal di Update']);
+        }
+    }
+
 }
