@@ -64,7 +64,7 @@
                                     </div>
                                     <div class="col-2">
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-primary">
+                                            <button type="submit" class="btn btn-primary w-100">
                                             
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
