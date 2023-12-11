@@ -370,7 +370,7 @@ class PresensiController extends Controller
             $query->where('status_approved', $request->status_approved);
         }
         $query->orderBy('tgl_izin','desc');
-        $izinsakit = $query->paginate(3);
+        $izinsakit = $query->paginate(4);
         $izinsakit->appends($request->all());
         return view('presensi.izinsakit', compact('izinsakit'));
     }
@@ -382,9 +382,9 @@ class PresensiController extends Controller
             'status_approved' => $status_approved
         ]);
         if($update){
-            return Redirect::back()->with(['success' => 'Data Berhasil di Update']);
+            return Redirect::back()->with(['success' => 'Data berhasil di update']);
         } else {
-            return Redirect::back()->with(['warning' => 'Data Gagal di Update']);
+            return Redirect::back()->with(['warning' => 'Data gagal di update']);
         }
     }
 

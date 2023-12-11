@@ -59,7 +59,6 @@
 <div class="fab-button bottom-right" style="margin-bottom: 70px;">
     <a href="/presensi/buatizin" class="fab">
         <ion-icon name="add-outline"></ion-icon>
-
     </a>
 </div>
 @endsection

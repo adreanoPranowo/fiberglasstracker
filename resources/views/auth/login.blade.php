@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#000000">
-    <title>E-presensi wangi fibergalss</title>
+    <title>POFI - Presensi Online Dengan Foto Selfie</title>
     <meta name="description" content="Mobilekit HTML Mobile UI Kit">
     <meta name="keywords" content="bootstrap 4, mobile template, cordova, phonegap, mobile, html" />
     <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png')}} " sizes="32x32">
@@ -34,8 +34,8 @@
                 <img src="{{ asset('assets/img/login/login.jpg') }}" alt="image" class="form-image">
             </div>
             <div class="section mt-1">
-                <h2>Fiberglass Tracker</h2>
-                <h4>Aplikasi Presensi Online Wangi Fiberglass yang Cerdas</h4>
+                <h2>POFI</h2>
+                <h4>Presensi Online dengan GPS dan Foto Selfi</h4>
             </div>
             <div class="section mt-1 mb-5">
                 @php
