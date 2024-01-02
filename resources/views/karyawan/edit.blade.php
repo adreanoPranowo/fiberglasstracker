@@ -2,7 +2,6 @@
                 @csrf
                 <div class="row">
                     <div class="col-12">
-                    
                     <div class="input-icon mb-3">
                         <span class="input-icon-addon">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-123" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -18,7 +17,6 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                    
                     <div class="input-icon mb-3">
                         <span class="input-icon-addon">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -33,7 +31,6 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                    
                     <div class="input-icon mb-3">
                         <span class="input-icon-addon">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-id-badge-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -51,7 +48,6 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                    
                     <div class="input-icon mb-3">
                         <span class="input-icon-addon">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-phone" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -59,14 +55,12 @@
                         <path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"></path>
                         </svg>
                         </span>
-                        
                         <input type="text" value="{{ $karyawan->no_hp }}"  id="no_hp" class="form-control" name="no_hp" placeholder="No Handphone">
                     </div>
                     </div>
                 </div>
                 <div class="row">
                         <div class="col-12">
-                        
                         <select name="kode_dpt" id="kode_dpt" class="form-select">
                             <option value="">Departemen</option>
                             @foreach($departemen as $d)
@@ -74,7 +68,18 @@
                             @endforeach
                         </select>
                         </div>
+                </div>
+                <div class="row">
+                    <h2></h2>
+                    <div class="col-12">
+                        <select name="kode_cabang" id="kode_cabang" class="form-select">
+                            <option value="">Cabang</option>
+                            @foreach($cabang as $d)
+                            <option {{ $karyawan->kode_cabang == $d->kode_cabang ? 'selected' : ''}} value="{{ $d->kode_cabang }}">{{ strtoupper($d->nama_cabang) }}</option>
+                            @endforeach
+                        </select>
                     </div>
+                </div>
                 <div class="row mt-2">
                     <div class="col-12">
                             <input type="file" name="foto" class="form-control">
@@ -95,4 +100,4 @@
                     </div>
                 </div>
             </div>
-            </form>
+</form>

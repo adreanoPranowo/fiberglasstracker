@@ -89,6 +89,7 @@
                             <th>NAMA</th>
                             <th>JABATAN</th>
                             <th>DEPARTEMENT</th>
+                            <th>CABANG</th>
                             <th>NO. HP</th>
                             <th>FOTO</th>
                             <th>AKSI</th>
@@ -105,6 +106,7 @@
                                 <td>{{ $d->nama_lengkap }}</td>
                                 <td>{{ $d->jabatan }}</td>
                                 <td>{{ $d->nama_dpt }}</td>
+                                <td>{{ $d->kode_cabang }}</td>
                                 <td>{{ $d->no_hp }}</td>
                                 <td>
                                     @if(empty($d->foto))
@@ -229,16 +231,27 @@
                     </div>
                 </div>
                 <div class="row">
-                        <div class="col-12">
+                    <div class="col-12">
                         <div class="form-label">Pilih Departemen</div>
                         <select name="kode_dpt" id="kode_dpt" class="form-select">
                             <option value="">Departemen</option>
                             @foreach($departemen as $d)
-                            <option {{ Request('kode_dpt')==$d->kode_dpt ? 'selected' : ''}} value="{{ $d->kode_dpt }}">{{ $d->nama_dpt }}</option>
+                            <option value="{{ $d->kode_dpt }}">{{ $d->nama_dpt }}</option>
                             @endforeach
                         </select>
-                        </div>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-label">Pilih Kantor Cabang</div>
+                        <select name="kode_cabang" id="kode_cabang" class="form-select">
+                            <option value="">Cabang</option>
+                            @foreach($cabang as $d)
+                            <option value="{{ $d->kode_cabang }}">{{ strtoupper($d->nama_cabang) }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
                 <div class="row mt-2">
                     <div class="col-12">
                         <div class="form-label">Masukan foto</div>

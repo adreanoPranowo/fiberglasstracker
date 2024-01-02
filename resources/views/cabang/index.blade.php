@@ -4,8 +4,8 @@
   <div class="container-xl">
     <div class="row g-2 align-items-center">
       <div class="col">
-        <div class="page-pretitle"></div>
-        <h2 class="page-title">Data Cabang</h2>
+        <div class="page-pretitle">Kantor Cabang</div>
+        <h2 class="page-title">Data Kantor Cabang</h2>
       </div>
     </div>
   </div>
@@ -23,7 +23,6 @@
                                         {{  Session::get('success') }}
                                     </div>
                                 @endif
-
                                 @if(Session::get('warning'))
                                     <div class="alert alert-warning">
                                         {{  Session::get('warning') }}
@@ -48,12 +47,15 @@
                             <form action="/cabang" method="GET">
                                 <div class="row">
                                     <div class="col-10">
-                                       <select name="kode_cabang" class="form-select" id="">
+                                       {{-- <select name="kode_cabang" class="form-select" id="">
                                             <option value="">Semua Cabang</option>
-                                       </select>
+                                            @foreach ($cabang as $d )
+                                                <option {{ Request('kode_cabang')==$d->kode_cabang ? 'selected' : '' }}  value="{{ $d->kode_cabang }}">{{ $d->nama_cabang }}</option>
+                                            @endforeach
+                                       </select> --}}
                                     </div>
                                     <div class="col-2">
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <button type="submit" class="btn btn-primary w-100">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -62,7 +64,7 @@
                                             </svg>
                                             Cari
                                             </button>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </form>
