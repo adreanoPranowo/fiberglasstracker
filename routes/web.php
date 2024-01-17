@@ -100,7 +100,13 @@ Route::middleware(['auth:user'])->group(function(){
     //lokasi kantor
     Route::get('/konfigurasi/lokasikantor', [KonfigurasiController::class, 'lokasikantor']);
     Route::post('/konfigurasi/updatelokasikantor', [KonfigurasiController::class, 'updatelokasikantor']);
+
+    //Jam Kerja
     Route::get('/konfigurasi/jamkerja', [KonfigurasiController::class, 'jamkerja']);
+    Route::post('/konfigurasi/storejamkerja', [KonfigurasiController::class, 'storejamkerja']);
+    Route::post('/konfigurasi/editjamkerja', [KonfigurasiController::class, 'editjamkerja']);
+    Route::post('/konfigurasi/updatejamkerja', [KonfigurasiController::class, 'updatejamkerja']);
+    Route::post('/konfigurasi/{kode_jam_kerja}/delete', [KonfigurasiController::class, 'deletejamkerja']);
 
 });
 

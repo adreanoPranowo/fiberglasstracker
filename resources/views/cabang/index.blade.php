@@ -276,6 +276,7 @@
             }
             })
         });
+        
         $("#frmCabang").submit(function(){
             var kode_cabang = $("#kode_cabang").val();
             var nama_cabang = $("#nama_cabang").val();
