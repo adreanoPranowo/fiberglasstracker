@@ -222,7 +222,7 @@
                     Laporan
                   </span>
                 </a>
-                <div class="dropdown-menu {{ request()->is(['presensi/laporan','presensi/rekap']) ? 'show' : '' }}">
+                <div class="dropdown-menu {{ request()->is(['presensi/laporan','presensi/rekap','presensi/gaji']) ? 'show' : '' }}">
                   <div class="dropdown-menu-columns">
                     <div class="dropdown-menu-column">
                       <a class="dropdown-item {{ request()->is(['presensi/laporan']) ? 'active' : '' }}" href="/presensi/laporan">
@@ -230,6 +230,9 @@
                       </a>
                       <a class="dropdown-item {{ request()->is(['presensi/rekap','presensi/rekap']) ? 'active' : '' }}" href="/presensi/rekap">
                         Rekap Presensi
+                      </a>
+                      <a class="dropdown-item {{ request()->is(['presensi/gaji','presensi/gaji']) ? 'active' : '' }}" href="/presensi/gaji">
+                        Penggajian
                       </a>
                     </div>
                   </div>

@@ -289,11 +289,48 @@ class PresensiController extends Controller
         return view('presensi.cetaklaporan', compact('bulan','tahun','namabulan','karyawan','presensi'));
     }
 
+    public function gaji(){
+        $namabulan = ["","Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+        $karyawan = DB::table('karyawan')->orderBy('nik')->get();
+        return view('presensi.gaji', compact('namabulan', 'karyawan'));
+    }
+
+    public function cetakgaji(Request $request){
+        $nik = $request->nik;
+        $bulan = $request->bulan;
+        $tahun = $request->tahun;
+        $namabulan = ["","Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+
+
+        $karyawan = DB::table('karyawan')->where('nik', $nik)
+        ->join('departemen','karyawan.kode_dpt','=','departemen.kode_dpt')
+        ->first();
+
+
+        $presensi = DB::table('presensi')
+        ->where('nik', $nik)
+        ->whereRaw('MONTH(tgl_presensi)="'.$bulan.'"')
+        ->whereRaw('YEAR(tgl_presensi)="'.$tahun.'"')
+        ->orderBy('tgl_presensi')
+        ->get();
+
+        if (isset($_POST['exportexcel'])){
+            $time = date("d-M-Y H:i:s");
+            //mengrimkan data raw ke excel
+            header("Content-type: application/vnd-ms-excel");
+            //mendefisinikan nama file export
+            header("Content-Disposition: attachment; filename=Laporan Presensi Karyawan $time.xls");
+            return view('presensi.cetaklaporanexcel', compact('bulan','tahun','namabulan','karyawan'));
+        }
+        return view('presensi.cetakgaji', compact('bulan','tahun','namabulan','karyawan'));
+    }
+
     public function rekap(){
 
         $namabulan = ["","Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
         return view('presensi.rekap', compact('namabulan'));
     }
+
 
     public function cetakrekap(Request $request){
         $bulan = $request->bulan;

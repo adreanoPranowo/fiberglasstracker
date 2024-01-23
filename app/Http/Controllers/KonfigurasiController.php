@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Setjamkerja;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -93,6 +94,67 @@ class KonfigurasiController extends Controller
             return Redirect::back()->with(['success'=>'Data Berhasil Di Hapus']);
         } else {
             return Redirect::back()->with(['warning'=>'Data Gagal Di Hapus']);
+        }
+    }
+
+    public function setjamkerja($nik){
+
+        $karyawan = DB::table('karyawan')->where('nik',$nik)->first();
+        $jamkerja = DB::table('jam_kerja')->orderBy('nama_jam_kerja')->get();
+        $cekjamkerja = DB::table('konfigurasi_jamkerja')->where('nik',$nik)->count();
+        if($cekjamkerja > 0){
+            $setjamkerja = DB::table('konfigurasi_jamkerja')->where('nik',$nik)->get();
+            return view('konfigurasi.editsetjamkerja', compact('karyawan','jamkerja','setjamkerja'));
+        } else {
+            return view('konfigurasi.setjamkerja', compact('karyawan','jamkerja'));
+        }
+    }
+
+    public function storesetjamkerja(Request $request){
+
+        $nik = $request->nik;
+        $hari = $request->hari;
+        $kode_jam_kerja = $request->kode_jam_kerja;
+
+        for($i=0; $i<count($hari); $i++){
+            $data[] = [
+                'nik' => $nik,
+                'hari' => $hari[$i],
+                'kode_jam_kerja' => $kode_jam_kerja[$i]
+            ];
+        }
+
+        try {
+            Setjamkerja::insert($data);
+            return redirect('/karyawan')->with(['success'=>'Jam Kerja berhasil di setting']);
+        } catch (\Exception $e) {
+            return redirect('/karyawan')->with(['warning'=>'Jam Kerja gagal di setting']);
+        }
+    }
+
+    public function updatesetjamkerja(Request $request){
+
+        $nik = $request->nik;
+        $hari = $request->hari;
+        $kode_jam_kerja = $request->kode_jam_kerja;
+
+        for($i=0; $i<count($hari); $i++){
+            $data[] = [
+                'nik' => $nik,
+                'hari' => $hari[$i],
+                'kode_jam_kerja' => $kode_jam_kerja[$i]
+            ];
+        }
+
+        DB::beginTransaction();
+        try {
+            DB::table('konfigurasi_jamkerja')->where('nik',$nik)->delete();
+            Setjamkerja::insert($data);
+            DB::commit();
+            return redirect('/karyawan')->with(['success'=>'Jam Kerja berhasil di setting']);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/karyawan')->with(['warning'=>'Jam Kerja gagal di setting']);
         }
     }
 }
